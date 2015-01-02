@@ -1,0 +1,25 @@
+/* recursively solve subtrees -- leap of faith!
+    newList = flattenTreeToList(root->left);
+	if(!newList){  //if(!newList)??
+		listHead = createListNode(root->data);
+		//prev = listHead;
+		printf("listHead->data: %d\n", listHead->data);
+	}
+	currList = listHead;
+	while(currList){
+		prev = currList;
+		currList = currList->next;
+	}
+	prev->next = createListNode(root->data);
+	newList = flattenTreeToList(root->right);
+    /*Creates new List node, assigns current root's data to it*/
+	//newNode = createListNode(root->data);
+	/*If there is a previous node in the list, links it to the new current, then sets previous equal to current
+    if(prev){
+		prev->next = newNode;
+		prev=prev->next;
+	}
+	else{
+		listRoot = newNode;
+		prev = newNode;
+	}*/

@@ -1,0 +1,268 @@
+/*
+* Name: John Curley	
+* Lab section: B
+* TA: Zhi Zhou / Seth Wiessman
+*
+* IF BONUS COMPLETED, COMMENT HERE
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Data structure for a binary search tree.
+typedef struct tree {
+	int data;
+	struct tree* left;
+	struct tree* right;
+} Tree;
+
+// Data structure for a linked list.
+typedef struct list {
+	int data;
+	struct list* next;
+} List;
+
+//enum for left or right node setting in insertToTree
+enum LorR{
+	left,
+	right
+}PrevLorR;
+
+// Prototypes
+Tree* createTreeNode(int data);
+Tree* insertToTree(Tree* root, int data);
+void reflectTree(Tree* root);
+int searchTree(Tree* root, int data);
+int getBstHeight(Tree* root);
+void freeTree(Tree* root);
+
+List* createListNode(int data);
+List* flattenTreeToList(Tree* root);
+void freeList(List* head);
+
+// These functions have already been implemented for you.
+void printTree(Tree* root);
+void printList(List* head);
+void padding(char toPrint, int numTimes);
+void displayTree(Tree* root, int depth);
+
+// Main function. 
+int main(int argc, char** argv)
+{
+
+}
+
+// Creates a new tree node with the given data.
+//
+// INPUT: data - The data to fill the tree node with.
+// OUTPUT: Returns a new Tree object, allocated with malloc.
+Tree* createTreeNode(int data)
+{
+	Tree* newTree = malloc(sizeof(Tree));
+	newTree->data = data;
+	newTree->left = NULL;
+	newTree->right = NULL;
+	return newTree;
+}
+
+// Inserts the value provided into the given tree. Should
+// follow the rule that smaller values are inserted into the
+// left side of the tree; all other values are inserted into the
+// right side of the tree.
+//
+// INPUT: root - The root of a tree to insert into, or
+//               NULL if no tree yet exists.
+//        data - The data to be inserted into the tree.
+//
+// OUTPUT: Returns the root of a tree containing the
+//         newly inserted value.
+Tree* insertToTree(Tree* root, int data)
+{
+	Tree* curNode = root;
+	Tree* newNode = createTreeNode(data);
+	if(!curNode){
+		return newNode;
+	}
+	while(curNode){
+		if(newNode->data < curNode->data){
+			curNode = curNode->left;
+		}
+		else{
+			curNode = curNode->right;
+		}
+	}
+	curNode = newNode;
+	
+}
+
+// Searches the given tree for the value provided.
+//
+// INPUT: root - The root of a tree to search through.
+//        data - The data to search for.
+//
+// OUTPUT: Returns 1 if the data is found in the tree,
+//         or -1 otherwise.
+int searchTree(Tree* root, int data)
+{
+	Tree *curNode = root;
+	if(!curNode){
+		printf("\nRoot = NULL\n");
+		return -1;
+	}
+	while(curNode){
+		if(data < curNode->data){
+			curNode = curNode->left;
+		}
+		else if(data > curNode->data){
+			curNode = curNode->right;
+		}
+		else{
+			return 1;
+		}
+	}
+	return -1;
+}
+
+// Determines the height of the tree. (Remember that a tree's
+// height is the longest path from the root of the tree until
+// reaching a leaf node.)
+//
+// INPUT: root - The root of the tree to find the height of.
+// OUTPUT: Returns the height of the tree. A NULL tree should
+//         be considered as having as a height of 0.
+int getBstHeight(Tree* root)
+{
+	if(!root){
+		return -1;
+	}
+	int leftNode = getBstHeight(root->left);
+	int rightNode = getBstHeight(root->right);
+	if(leftNode > rightNode){
+		return leftNode + 1;
+	}
+	else{
+		return rightNode + 1;
+	}
+}
+
+// Creates a new list node with the given data.
+//
+// INPUT: data - The data to fill the list node with.
+// OUTPUT: Returns a new List object, allocated with malloc.
+List* createListNode(int data)
+{
+	List* newList = malloc(sizeof(List));
+	newList->data = data;
+	newList->next = NULL;
+	return newList;
+	
+	
+}
+
+// Turns a Tree into a List in sorted order.
+//
+// INPUT: root - The root of a Tree which will be flattened.
+// OUTPUT: Returns a pointer to the head of a list, which contains
+//         the values of the tree in sorted order.
+//
+// NOTE: You should not be performing any actual "sorting" aside from
+//       taking advantage of the order of the tree. Do not add the nodes
+//       from the tree to the list in some random order and then sort the
+//       list.
+List* flattenTreeToList(Tree* root)
+{
+	Tree* tempT = root;
+	List* newList = NULL;
+	List* listRoot = NULL;
+	List* newNode = NULL;
+	if(!root){
+		return NULL;
+	}
+
+    /* recursively solve subtrees -- leap of faith! */
+    newList = flattenTreeToList(root->left);
+	newList = flattenTreeToList(root->right);
+    /*Creates new List node, assigns current root's data to it*/
+	newNode = createListNode(root->data);
+	/*If there is a previous node in the list, links it to the new current, then sets previous equal to current*/
+    if(prev){
+		prev->next = newNode;
+	}
+	else{
+		listRoot = newNode;
+	}
+	prev = newNode;
+    
+    return listRoot;
+}
+
+// Frees all nodes in the given tree.
+//
+// INPUT: root - The root of the tree to be freed.
+void freeTree(Tree* root)
+{
+
+}
+
+// Frees all nodes in the given list.
+//
+// INPUT: list - The head of a list to be freed.
+void freeList(List* head)
+{
+
+}
+
+// Reflects a tree such that the sortedness of the tree
+// is exactly reversed: a tree sorted left-to-right will
+// become sorted right-to-left, and vice versa.
+//
+// INPUT: root - The root of a tree to reverse.
+void reflectTree(Tree* root)
+{
+
+}
+
+// Prints out a tree. The tree is displayed horizontally; its root is at the left,
+// with its branches spreading out to the right (up, on the screen) and left (down,
+// on the screen). Provided for you; do not modify.
+void printTree(Tree* root)
+{
+	displayTree(root, 0);
+}
+
+// Prints out a linked list. Provided for you; do not modify.
+void printList(List* head)
+{
+	while (head != NULL)
+	{
+		printf("%d -> ", head->data);
+		head = head->next;
+	}
+
+	print("NULL\n");
+}
+
+// Recursive function used with printTree. Provided for you; do not modify. You should
+// not call this function directly. Instead, call printTree.
+void displayTree(Tree* root, int depth)
+{
+	if (root == NULL)
+	{
+		padding(' ', depth);
+		printf("-\n");
+		return;
+	}
+
+	displayTree(root->left, depth+4);
+	padding(' ', depth);
+	printf("%d\n", root->data);
+	displayTree(root->right, depth+4);
+}
+
+// Prints out a character repeatedly. Provided for you; do not modify.
+void padding(char toPrint, int numTimes)
+{
+	int i;
+	for (i = 0; i < numTimes; i++)
+		printf("%c", toPrint);
+}

@@ -1,0 +1,9 @@
+Tarasenko 5 5
+Berglund 5 2
+Stewart 4 0
+Oshie 3 5
+Pietrangelo 2 7
+Perron 2 6
+McDonald 2 4
+Jackman 2 0
+Redden 2 0

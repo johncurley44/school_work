@@ -1,0 +1,13 @@
+John Curley - jmcgdd
+16013276
+Assignment 4 - Description File
+
+This algorithm was implemented using the Bellman-Ford algorithm as its basis. However, a modification had to be made because the 
+Bellman-Ford algorithm is for use with a single-source, but our problem does not indicate one. To fix this issue, the distances of 
+every vertex is initialized as 0 instead of a very large number (infinity). This allows the algorithm to use any potential source and 
+still determine whether or not a NWC exists. 
+
+To increase the efficiency of the algorithm, each vertex was saved to a queue whenever it's distance was changed by the algorithm. 
+Then, when going through the algorithm again, only the changed vertices and their adjacent vertices are examined, for those are the 
+only ones that can be a part of the shortest path. (Any segment of a shortest path is a shortest path.) This noticably increased 
+the runtime of the algorithm and its overall efficiency.
