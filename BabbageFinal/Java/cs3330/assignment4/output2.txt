@@ -1,0 +1,8 @@
+File name: output2.txt
+	Sum: 172.6
+	Average: 8.629999999999999
+	Minimum value: 1.0
+	Maximum value: 19.0
+	Median: 7.75
+	Variance: 24.280105263157893
+	Standard Deviation: 4.927484679139845

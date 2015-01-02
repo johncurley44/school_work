@@ -1,0 +1,10 @@
+File name: output5.txt
+	Sum: 169.8
+	Average: 8.085714285714285
+	Minimum value: -2.8
+	Maximum value: 19.0
+	Median: 7.5
+	Variance: 29.28728571428572
+	Standard Deviation: 5.411772880885313
+	Increasing order:   -2.8 1.0 1.0 3.0 5.0 5.0 6.0 7.0 7.0 7.0 7.5 8.0 8.1 9.0 10.0 11.0 13.0 13.0 14.0 18.0 19.0
+	Decreasing order:   19.0 18.0 14.0 13.0 13.0 11.0 10.0 9.0 8.1 8.0 7.5 7.0 7.0 7.0 6.0 5.0 5.0 3.0 1.0 1.0 -2.8
